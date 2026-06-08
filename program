@@ -1,6 +1,70 @@
 #!/usr/bin/env python3
+import argparse
+import cmd
+import sys
+
+def print_help():
+    print("Help \t\tWyświetla ten komunikat")
+    print("Generate \tGeneruje nowy zbiór danych do pliku")
+    print("Load \t\tWczytuje dane z pliku .txt")
+    print("Print \t\tWyświetla wczytane parametry i listę przedmiotów")
+    print("Brute \t\tSzuka rozwiązania za pomocą algorytmu siłowego (Brute Force)")
+    print("DP \t\tSzuka rozwiązania za pomocą programowania dynamicznego (PD)")
+    print("Exit \t\tWychodzi z programu")
+
 def main():
-    print("Done.")
+    parser = argparse.ArgumentParser(description='AiSD Zadanie 5 - Problem plecakowy')
+    group = parser.add_mutually_exclusive_group(required=True)
+    
+    group.add_argument('-f', '--file', type=str, help='Ścieżka do pliku z danymi do wczytania na starcie')
+    group.add_argument('-g', '--generate', nargs=3, metavar=('N', 'C', 'FILEPATH'), 
+                       help='Wygeneruj nowe dane podając: n (ilość), C (pojemność), oraz ścieżkę do pliku')
+    args = parser.parse_args()
+    current_data = None
+
+    try: 
+        if args.generate:
+            n_input = int(args.generate[0])
+            c_input = int(args.generate[1])
+            file_path = args.generate[2]
+            print(f"Generowanie danych startowych: n={n_input}, C={c_input} do pliku {file_path}")
+            
+        elif args.file:
+            print(f"Wczytywanie pliku startowego: {args.file}...")
+            pass
+
+        while True:
+            action_input = input("action> ").strip().lower()
+            
+            if action_input == "help":
+                print_help()
+                
+            elif action_input == "load":
+                pass
+            elif action_input == "print":
+                pass     
+            elif action_input in ["brute", "bf", "bruteforce"]:
+                pass
+            elif action_input in ["dp", "dynamic"]:
+                pass   
+            elif action_input == "exit":
+                break
+            elif action_input == "":
+                continue
+            else:
+                print("Nieznana komenda. Wpisz 'help'.")
+                
+    except ValueError:
+        print("Błąd: Błędny format danych startowych. n i C muszą być liczbami.")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Błąd: {e}", file=sys.stderr)
+        sys.exit(1)
+    except EOFError:
+        sys.exit(0)
+    except KeyboardInterrupt:
+        print("\nPrzerwano przez użytkownika.")
+        sys.exit(0)
 
 if __name__ == "__main__":
     main()
