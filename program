@@ -2,11 +2,11 @@
 import argparse
 import cmd
 import sys
+from src.generator import generate_knapsack_data
+from src.file_io import load_knapsack_data
 
 def print_help():
     print("Help \t\tWyświetla ten komunikat")
-    print("Generate \tGeneruje nowy zbiór danych do pliku")
-    print("Load \t\tWczytuje dane z pliku .txt")
     print("Print \t\tWyświetla wczytane parametry i listę przedmiotów")
     print("Brute \t\tSzuka rozwiązania za pomocą algorytmu siłowego (Brute Force)")
     print("DP \t\tSzuka rozwiązania za pomocą programowania dynamicznego (PD)")
@@ -28,10 +28,12 @@ def main():
             c_input = int(args.generate[1])
             file_path = args.generate[2]
             print(f"Generowanie danych startowych: n={n_input}, C={c_input} do pliku {file_path}")
-            
+            generate_knapsack_data(n_input, c_input, file_path)
+            current_data = load_knapsack_data(file_path)
+
         elif args.file:
             print(f"Wczytywanie pliku startowego: {args.file}...")
-            pass
+            current_data = load_knapsack_data(args.file)
 
         while True:
             action_input = input("action> ").strip().lower()
@@ -39,8 +41,6 @@ def main():
             if action_input == "help":
                 print_help()
                 
-            elif action_input == "load":
-                pass
             elif action_input == "print":
                 pass     
             elif action_input in ["brute", "bf", "bruteforce"]:
