@@ -4,6 +4,7 @@ import cmd
 import sys
 from src.generator import generate_knapsack_data
 from src.file_io import load_knapsack_data
+from src.print_action import run_print_action
 
 def print_help():
     print("Help \t\tWyświetla ten komunikat")
@@ -40,9 +41,8 @@ def main():
             
             if action_input == "help":
                 print_help()
-                
             elif action_input == "print":
-                pass     
+                run_print_action(current_data)
             elif action_input in ["brute", "bf", "bruteforce"]:
                 pass
             elif action_input in ["dp", "dynamic"]:
