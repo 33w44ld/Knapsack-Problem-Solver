@@ -7,6 +7,6 @@ def run_print_action(current_data):
         print(f"Lista przedmiotów (wartość, objętość):")
         for idx, (p, w) in enumerate(items, 1):
             print(f"  [{idx}] p = {p}, w = {w}")
-        print("-------------------------\n")
+        print("-------------------------")
     else:
         print("Brak danych do wyświetlenia.")
