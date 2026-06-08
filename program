@@ -5,6 +5,7 @@ import sys
 from src.generator import generate_knapsack_data
 from src.file_io import load_knapsack_data
 from src.print_action import run_print_action
+from src.brute_force import run_brute_force
 
 def print_help():
     print("Help \t\tWyświetla ten komunikat")
@@ -44,7 +45,10 @@ def main():
             elif action_input == "print":
                 run_print_action(current_data)
             elif action_input in ["brute", "bf", "bruteforce"]:
-                pass
+                if current_data: 
+                    run_brute_force(current_data)
+                else:
+                    print("Brak danych.")
             elif action_input in ["dp", "dynamic"]:
                 pass   
             elif action_input == "exit":
