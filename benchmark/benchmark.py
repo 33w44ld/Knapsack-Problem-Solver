@@ -12,7 +12,7 @@ from src.dynamic_programming import run_dynamic_programming
 
 def run_auto_benchmark():
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    output_csv = os.path.join(current_dir, "benchmark_results.csv")
+    output_csv = os.path.join(current_dir, "results/benchmark_results.csv")
         
     headers = ["n", "C", "Czas_Brute_Force_s", "Czas_PD_s", "Wynik_Wartosc"]
     
